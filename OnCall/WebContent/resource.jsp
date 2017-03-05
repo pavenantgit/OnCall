@@ -83,16 +83,23 @@
 										<div class="col-md-10">
 											<select class="form-control" name="departments" id="departments" multiple="multiple">
 												<c:forEach items="${departments}" var="department" varStatus="loop">
-													<c:forEach items="${resource.departments}" var="rd">
-														<c:choose>
-															<c:when test="${rd eq department.sequence}">
-																<option value="${department.sequence}" selected="selected">${department.name}</option>
-															</c:when>
-															<c:otherwise>
-																<option value="${department.sequence}">${department.name}</option>
-															</c:otherwise>
-														</c:choose>
-													</c:forEach>
+													<c:choose>
+														<c:when test="${empty resource.departments}">
+															<option value="${department.sequence}">${department.name}</option>
+														</c:when>
+														<c:otherwise>
+															<c:forEach items="${resource.departments}" var="rd">
+																<c:choose>
+																	<c:when test="${rd eq department.sequence}">
+																		<option value="${department.sequence}" selected="selected">${department.name}</option>
+																	</c:when>
+																	<c:otherwise>
+																		<option value="${department.sequence}">${department.name}</option>
+																	</c:otherwise>
+																</c:choose>
+															</c:forEach>
+														</c:otherwise>
+													</c:choose>
 												</c:forEach>
 											</select>
 										</div>

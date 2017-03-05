@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Context>
+
+	<!--  Proxool Datasource -->
+		<Resource
+			name="jdbc/mysql/oncall"
+			type="javax.sql.DataSource"
+			factory="org.logicalcobwebs.proxool.ProxoolDataSource"
+			proxool.alias="oncall"
+			user="root"
+			password="password"
+			proxool.driver-url="jdbc:mysql://localhost:3306/oncall"
+			proxool.driver-class="com.mysql.jdbc.Driver"
+			house-keeping-test-sql="Select 1"
+			proxool.maximum-connection-count="100"
+			proxool.minimum-connection-count="16"
+			maximum-connection-lifetime="00:30:00"
+			test-before-use="true"
+			trace="true"
+			verbose="false"
+		/>
+
+	<!-- JDBC Datasource -->
+	<!--
+	<Resource 
+		name="jdbc/mysql/oncall" 
+		verbose="true" 
+		trace="true" 
+		auth="Container" 
+		type="javax.sql.DataSource" 
+		maxTotal="8" 
+		maxIdle="30" 
+		maxWaitMillis="-1" 
+		username="root" 
+		password="password" 
+		driverClassName="com.mysql.jdbc.Driver" 
+		url="jdbc:mysql://localhost:3306/oncall">
+	</Resource>
+	-->
+</Context>

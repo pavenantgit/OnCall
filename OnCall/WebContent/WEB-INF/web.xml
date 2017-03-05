@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>OnCall</display-name>
+
+  <context-param>
+    <description>The log4J Configuration File</description>
+    <param-name>log4jConfigurationFile</param-name>
+    <param-value>WEB-INF/log4j.lcf</param-value>
+  </context-param>
+
+  <listener>
+    <listener-class>oncall.core.StartUpListener</listener-class>
+  </listener>
+
+  <servlet>
+    <description>Dashboard Functionality</description>
+    <display-name>DashboardController</display-name>
+    <servlet-name>DashboardController</servlet-name>
+    <servlet-class>oncall.controller.DashboardController</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description>Department Functionality</description>
+    <display-name>DepartmentController</display-name>
+    <servlet-name>DepartmentController</servlet-name>
+    <servlet-class>oncall.controller.DepartmentController</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description>Resource Functionality</description>
+    <display-name>ResourceController</display-name>
+    <servlet-name>ResourceController</servlet-name>
+    <servlet-class>oncall.controller.ResourceController</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description>Schedule Functionality</description>
+    <display-name>ScheduleController</display-name>
+    <servlet-name>ScheduleController</servlet-name>
+    <servlet-class>oncall.controller.ScheduleController</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DashboardController</servlet-name>
+    <url-pattern>/dashboard</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>DepartmentController</servlet-name>
+    <url-pattern>/department</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ResourceController</servlet-name>
+    <url-pattern>/resource</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ScheduleController</servlet-name>
+    <url-pattern>/schedule</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+  	<welcome-file>DashboardController</welcome-file>
+  </welcome-file-list>
+</web-app>

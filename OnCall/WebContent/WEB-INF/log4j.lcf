@@ -1,0 +1,27 @@
+
+log4j.rootLogger=INFO, FileAppender, stdout
+
+
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+
+## Pattern to output the caller's file name and line number.
+log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss.SSS} [%15.15t] %-5p %40.40c %30.30M  %x %m%n
+
+log4j.appender.FileAppender=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.FileAppender.File=${catalina.home}/logs/raptor.log
+log4j.appender.FileAppender.DatePattern='.'yyyy-MM-dd
+log4j.appender.FileAppender.layout=org.apache.log4j.PatternLayout
+log4j.appender.FileAppender.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss.SSS} [%15.15t] %-5p %40.40c %x %m%n
+
+
+log4j.logger.org.logicalcobwebs.proxool=WARN
+log4j.logger.org.apache.commons.digester=WARN
+log4j.logger.net.sf.jasperreports.engine=INFO
+log4j.logger.uk.ltd.getahead.dwr=INFO
+log4j.logger.raptor=INFO
+log4j.logger.org.apache.jasper.servlet.JspServlet=INFO
+log4j.logger.org.apache.catalina=WARN
+log4j.logger.org.directwebremoting=INFO
+
+log4j.logger.waffle=INFO

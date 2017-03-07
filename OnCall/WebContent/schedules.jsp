@@ -11,47 +11,66 @@
 
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-grid.min.css">
-	<!-- link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-reboot.min.css" -->
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-multiselect.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/font-awesome.min.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/style.css">
 </head>
 <body>
 
-	<c:set var="activeMenu" scope="session" value="departments"></c:set>
+	<c:set var="activeMenu" scope="session" value="schedules"></c:set>
 	<%@include file="/header.jsp" %>
 
 	<div class="container-fluid">
 
 		<ol class="breadcrumb">
-			<li class=""><i class="fa fa-dashboard"></i> <a href="<%=request.getContextPath()%>/">Dashboard</a></li>
-			<li class="active"><i class="fa fa-university"></i> Departments</li>
+			<li><i class="fa fa-dashboard"></i> <a href="<%=request.getContextPath()%>/">Dashboard</a></li>
+			<li class="active"><i class="fa fa-calendar"></i> Schedules</li> 
 		</ol>
 
 		<div class="content">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Departments
-					<a class="btn btn-default btn-xs pull-right" href="<%=request.getContextPath()%>/department?action=insert" type="button"><i class="fa fa-plus"></i> Add New Department</a>
+					Schedules
+					<a class="btn btn-default btn-xs pull-right" href="<%=request.getContextPath()%>/schedule?action=insert" type="button"><i class="fa fa-plus"></i> Add New Schedule</a>
 				</div>
-				<table class="table table-hover table-condensed table-bordered department-table">
+				<table class="table table-hover table-condensed">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Description</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<th>Department</th>
+							<th>Resource</th>
 							<th>Active</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${departments}" var="department" varStatus="loop">
+						<c:forEach items="${schedules}" var="schedule" varStatus="loop">
 							<tr>
-								<td><c:out value="${department.name}" /></td>
-								<td><c:out value="${department.description}" /></td>
-								<td><c:out value="${department.active ? 'Yes' : 'No'}" /></td>
+								<td><c:out value="${schedule.startDate}" /></td>
+								<td><c:out value="${schedule.endDate}" /></td>
 								<td>
-									<a class="btn btn-xs btn-primary" href="<%=request.getContextPath()%>/department?action=edit&sequence=${department.sequence}"><i class="fa fa-pencil"></i> Edit</a>
-									<a class="btn btn-xs btn-danger btn-delete-department" data-href="<%=request.getContextPath()%>/department?action=delete&amp;sequence=${department.sequence}" data-id="${department.sequence}" data-title="${department.name}" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-trash"></i> Delete</a>
+									<c:forEach items="${departments}" var="department" varStatus="loop">
+										<c:choose>
+											<c:when test="${schedule.department eq department.sequence}">
+												<c:out value="${department.name}" />
+											</c:when>
+										</c:choose>
+									</c:forEach>
+								</td>
+								<td>
+									<c:forEach items="${resources}" var="resource" varStatus="loop">
+										<c:choose>
+											<c:when test="${schedule.resource eq resource.sequence}">
+												<c:out value="${resource.firstName}" />&nbsp;<c:out value="${resource.lastName}" />
+											</c:when>
+										</c:choose>
+									</c:forEach>
+								</td>
+								<td><c:out value="${schedule.active ? 'Yes' : 'No'}" /></td>
+								<td>
+									<a class="btn btn-xs btn-primary" href="schedule?action=edit&sequence=<c:out value="${schedule.sequence}"/>"><i class="fa fa-pencil"></i> Edit</a>
+									<a class="btn btn-xs btn-danger" href="schedule?action=delete&sequence=<c:out value="${schedule.sequence}"/>"><i class="fa fa-trash"></i> Delete</a>
 								</td>
 							</tr>
 						</c:forEach>
@@ -82,7 +101,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</div>
 					<div class="modal-body">
-						<p>You are about to delete a department.</p>
+						<p>You are about to delete a schedule.</p>
 						<p>Do you want to proceed?</p>
 					</div>
 					<div class="modal-footer">
@@ -104,7 +123,7 @@
 
 		$(document).ready(function() {
 
-			var date = new Date();
+
 
 		});
 	</script>

@@ -15,7 +15,7 @@ public class ScheduleDAO {
 
 	private static Logger logger = Logger.getLogger(ScheduleDAO.class);
 
-	private static final String SQL_SCHEDULE_INSERT = "insert into schedule (startdate, enddate, department, resource active) values (?, ?, ?, ?, ?)";
+	private static final String SQL_SCHEDULE_INSERT = "insert into schedule (startdate, enddate, department, resource, active) values (?, ?, ?, ?, ?)";
 	private static final String SQL_SCHEDULE_DELETE = "delete from schedule where seq = ?";
 	private static final String SQL_SCHEDULE_UPDATE = "update schedule set startdate = ?, enddate = ?, department = ?, resource = ?, active = ? where seq = ?";
 	private static final String SQL_SCHEDULE_SELECT = "select * from schedule where seq = ?";
@@ -125,7 +125,7 @@ public class ScheduleDAO {
 							schedule.setEndDate(rs.getDate("enddate"));
 							schedule.setDepartment(rs.getInt("department"));
 							schedule.setResource(rs.getInt("resource"));
-							schedule.setActive(rs.getString("active") == "Y" ? true : false);
+							schedule.setActive(rs.getString("active").equalsIgnoreCase("Y") ? true : false);
 							result.add(schedule);
 						}
 					} finally {
@@ -162,7 +162,7 @@ public class ScheduleDAO {
 							result.setEndDate(rs.getDate("enddate"));
 							result.setDepartment(rs.getInt("department"));
 							result.setResource(rs.getInt("resource"));
-							result.setActive(rs.getString("active") == "Y" ? true : false);
+							result.setActive(rs.getString("active").equalsIgnoreCase("Y") ? true : false);
 						}
 					} finally {
 						rs.close();

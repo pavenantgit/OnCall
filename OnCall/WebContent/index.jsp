@@ -11,7 +11,7 @@
 
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-grid.min.css">
-	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-reboot.min.css">
+	<!-- link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-reboot.min.css" -->
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-multiselect.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/font-awesome.min.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/style.css">
@@ -27,11 +27,11 @@
 		<div class="row">
 
 			<div class="col-md-4">
-				<div class="card">
-					<h3 class="card-header">Department Name</h3>
-					<div class="card-block">
-						<h5 class="card-title">Resource Name</h5>
-						<p class="card-text">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Department Name</div>
+					<div class="panel-body">
+						<h5>Resource Name</h5>
+						<p class="panel-text">
 							082 123 1234<br />
 							someone@somewhere.com
 						</p>
@@ -40,11 +40,11 @@
 			</div>
 	
 			<div class="col-md-4">
-				<div class="card">
-					<h3 class="card-header">Department Name</h3>
-					<div class="card-block">
-						<h5 class="card-title">Resource Name</h5>
-						<p class="card-text">
+				<div class="panel panel-success">
+					<div class="panel-heading">Department Name</div>
+					<div class="panel-body panel-success">
+						<h5>Resource Name</h5>
+						<p class="panel-text">
 							082 123 1234<br />
 							someone@somewhere.com
 						</p>
@@ -53,11 +53,11 @@
 			</div>
 	
 			<div class="col-md-4">
-				<div class="card">
-					<h3 class="card-header">Department Name</h3>
-					<div class="card-block">
-						<h5 class="card-title">Resource Name</h5>
-						<p class="card-text">
+				<div class="panel panel-info">
+					<div class="panel-heading">Department Name</div>
+					<div class="panel-body">
+						<h5>Resource Name</h5>
+						<p class="panel-text">
 							082 123 1234<br />
 							someone@somewhere.com
 						</p>
@@ -68,6 +68,15 @@
 		</div>
 
 	</div>
+
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container-fluid">
+			<div class="panel-body">
+				<strong>Copyright &copy; 2017 <a href="http://www.altron.com">Altron</a>.</strong> All rights reserved.
+				<div class="pull-right"><b>Version</b> 1.0.0</div>
+			</div>
+		</div>
+	</nav>
 
 	<script type="text/javascript" src="<%=request.getContextPath() %>/assets/js/jquery-3.1.1.slim.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath() %>/assets/js/tether.min.js"></script>

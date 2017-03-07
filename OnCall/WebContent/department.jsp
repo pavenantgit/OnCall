@@ -11,7 +11,7 @@
 
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-grid.min.css">
-	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-reboot.min.css">
+	<!-- link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-reboot.min.css" -->
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-multiselect.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/font-awesome.min.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/style.css">
@@ -24,68 +24,66 @@
 	<div class="container-fluid">
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><i class="fa fa-dashboard"></i> <a href="">Dashboard</a></li>
-			<li class="breadcrumb-item"><i class="fa fa-university"></i> <a href="<%=request.getContextPath() %>/department">Departments</a></li>
-			<li class="breadcrumb-item active"><i class="fa fa-pencil"></i> Edit Department</li>
+			<li class=""><i class="fa fa-dashboard"></i> <a href="<%=request.getContextPath()%>/">Dashboard</a></li>
+			<li class=""><i class="fa fa-university"></i> <a href="<%=request.getContextPath() %>/department">Departments</a></li>
+			<li class="active"><i class="fa fa-pencil"></i> Edit Department</li>
 		</ol>
 
 		<div class="content">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="card">
-						<div class="card-header">
-							<h3 class="card-title">Department</h3>
-						</div>
-						<form class="form-horizontal" action="DepartmentController" method="POST">
-							<div class="card-block">
-								<fieldset>
-									<div class="form-group">
-										<label class="col-sm-2 control-label" for="sequence">Sequence</label>
-										<div class="col-sm-10">
-											<input class="form-control" type="text" name="sequence" value="<c:out value="${department.sequence}" />" readonly="readonly" placeholder="Sequence" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-2 control-label" for="name">Department</label>
-										<div class="col-sm-10">
-											<input class="form-control" type="text" name="name" value="<c:out value="${department.name}" />" placeholder="Department Name" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-2 control-label" for="description">Description</label>
-										<div class="col-sm-10">
-											<input class="form-control" type="text" name="description" value="<c:out value="${department.description}" />" placeholder="Description" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-2 control-label" for="active">Active</label>
-										<div class="col-sm-10">
-											<select class="form-control" name="active">
-												<option value="Y" <c:if test="${department.active eq true}">selected="selected"</c:if>>Yes</option>
-												<option value="N" <c:if test="${department.active eq false}">selected="selected"</c:if>>No</option>
-											</select>
-										</div>
-									</div>
-								</fieldset>
-							</div>
-							<div class="card-footer">
-								<div>
-									<input class="btn btn-default" type="submit" value="Submit" />
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Department
+				</div>
+				<form class="form-horizontal" action="DepartmentController" method="POST">
+					<div class="panel-body">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="sequence">Sequence</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text" name="sequence" value="<c:out value="${department.sequence}" />" readonly="readonly" placeholder="Sequence" />
 								</div>
 							</div>
-						</form>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="name">Department</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text" name="name" value="<c:out value="${department.name}" />" placeholder="Department Name" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="description">Description</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text" name="description" value="<c:out value="${department.description}" />" placeholder="Description" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="active">Active</label>
+								<div class="col-md-10">
+									<select class="form-control" name="active">
+										<option value="Y" <c:if test="${department.active eq true}">selected="selected"</c:if>>Yes</option>
+										<option value="N" <c:if test="${department.active eq false}">selected="selected"</c:if>>No</option>
+									</select>
+								</div>
+							</div>
+						</fieldset>
 					</div>
-				</div>
+					<div class="panel-footer">
+						<div>
+							<input class="btn btn-default offset-md-2" type="submit" value="Submit" />
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 
-	<div class="fixed-bottom">
+	<nav class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container-fluid">
-			<div class="pull-right hidden-xs"><b>Version</b> 1.0.0</div>
-			<strong>Copyright &copy; 2017 <a href="http://www.altron.com">Altron</a>.</strong> All rights reserved.
+			<div class="panel-body">
+				<strong>Copyright &copy; 2017 <a href="http://www.altron.com">Altron</a>.</strong> All rights reserved.
+				<div class="pull-right"><b>Version</b> 1.0.0</div>
+			</div>
 		</div>
-	</div>
+	</nav>
 
 	<script type="text/javascript" src="<%=request.getContextPath() %>/assets/js/jquery-3.1.1.slim.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath() %>/assets/js/tether.min.js"></script>

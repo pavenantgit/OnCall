@@ -1,6 +1,7 @@
 package oncall.controller;
 
 import java.io.IOException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,11 +14,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
+import oncall.database.DepartmentDAO;
+import oncall.database.ResourceDAO;
 import oncall.database.ScheduleDAO;
+import oncall.model.Department;
+import oncall.model.Resource;
 import oncall.model.Schedule;
 
 @WebServlet("/ScheduleController")
 public class ScheduleController extends HttpServlet {
+
+	private static Logger logger = Logger.getLogger(ScheduleController.class);
 
 	private ScheduleDAO dao;
 	
@@ -32,6 +41,10 @@ public class ScheduleController extends HttpServlet {
 
 		String page = "";
 		String action = request.getParameter("action");
+		if (action == null) {
+			action = "list";
+		}
+
 
 		if (action.equalsIgnoreCase("delete")) {
 			page = PAGE_SCHEDULE_LIST;
@@ -43,14 +56,26 @@ public class ScheduleController extends HttpServlet {
 			int sequence = Integer.parseInt(request.getParameter("sequence"));
 			Schedule schedule = dao.getSchedule(sequence);
 			request.setAttribute("schedule", schedule);
+			ArrayList<Department> departments = new DepartmentDAO().getDepartments();
+			request.setAttribute("departments", departments);
+			ArrayList<Resource> resources = new ResourceDAO().getResources();
+			request.setAttribute("resources", resources);
 		} else if (action.equalsIgnoreCase("insert")) {
 			page = PAGE_SCHEDULE;
+			ArrayList<Department> departments = new DepartmentDAO().getDepartments();
+			request.setAttribute("departments", departments);
+			ArrayList<Resource> resources = new ResourceDAO().getResources();
+			request.setAttribute("resources", resources);
 		} else if (action.equalsIgnoreCase("list")) {
 			ArrayList<Schedule> list = dao.getSchedules();
 			request.setAttribute("schedules", list);
 			page = PAGE_SCHEDULE_LIST;
+			ArrayList<Department> departments = new DepartmentDAO().getDepartments();
+			request.setAttribute("departments", departments);
+			ArrayList<Resource> resources = new ResourceDAO().getResources();
+			request.setAttribute("resources", resources);
 		} else {
-			throw new ServletException("Invalid Action");
+			logger.error("Invalid Action");
 		}
 		RequestDispatcher rd = request.getRequestDispatcher(page);
 		rd.forward(request, response);
@@ -90,6 +115,10 @@ public class ScheduleController extends HttpServlet {
 			dao.updateSchedule(schedule);
 		}
 		request.setAttribute("schedules", dao.getSchedules());
+		ArrayList<Department> departments = new DepartmentDAO().getDepartments();
+		request.setAttribute("departments", departments);
+		ArrayList<Resource> resources = new ResourceDAO().getResources();
+		request.setAttribute("resources", resources);
 		RequestDispatcher rd = request.getRequestDispatcher(PAGE_SCHEDULE_LIST);
 		rd.forward(request, response);
 	}

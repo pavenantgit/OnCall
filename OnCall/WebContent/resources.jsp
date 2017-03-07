@@ -11,7 +11,7 @@
 
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-grid.min.css">
-	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-reboot.min.css">
+	<!-- link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-reboot.min.css" -->
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap-multiselect.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/font-awesome.min.css">
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/style.css">
@@ -24,62 +24,55 @@
 	<div class="container-fluid">
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><i class="fa fa-dashboard"></i> <a href="">Dashboard</a></li>
-			<li class="breadcrumb-item active"><i class="fa fa-users"></i> Resources</li>
+			<li class=""><i class="fa fa-dashboard"></i> <a href="<%=request.getContextPath()%>/">Dashboard</a></li>
+			<li class="active"><i class="fa fa-users"></i> Resources</li>
 		</ol>
 
 		<div class="content">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">
-								Resources
-								<a class="btn btn-default btn-sm pull-right" href="<%=request.getContextPath()%>/resource?action=insert" type="button"><i class="fa fa-plus"></i> Add New Resource</a>
-								<div class="clearfix"></div>
-							</h5>
-						</div>
-						<div class="card-block">
-							<table class="table table-hover table-sm">
-								<thead>
-									<tr>
-										<th>First Name</th>
-										<th>Last Name</th>
-										<th>Contact Number</th>
-										<th>E-mail</th>
-										<th>Active</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${resources}" var="resource" varStatus="loop">
-										<tr>
-											<td><c:out value="${resource.firstName}" /></td>
-											<td><c:out value="${resource.lastName}" /></td>
-											<td><c:out value="${resource.contactNumber}" /></td>
-											<td><c:out value="${resource.email}" /></td>
-											<td><c:out value="${resource.active ? 'Yes' : 'No'}" /></td>
-											<td>
-												<a class="btn btn-sm btn-primary" href="resource?action=edit&sequence=<c:out value="${resource.sequence}"/>"><i class="fa fa-pencil"></i> Edit</a>
-												<a class="btn btn-sm btn-danger" href="resource?action=delete&sequence=<c:out value="${resource.sequence}"/>"><i class="fa fa-trash"></i> Delete</a>
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Resources
+					<a class="btn btn-default btn-xs pull-right" href="<%=request.getContextPath()%>/resource?action=insert" type="button"><i class="fa fa-plus"></i> Add New Resource</a>
 				</div>
+				<table class="table table-hover table-condensed">
+					<thead>
+						<tr>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Contact Number</th>
+							<th>E-mail</th>
+							<th>Active</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${resources}" var="resource" varStatus="loop">
+							<tr>
+								<td><c:out value="${resource.firstName}" /></td>
+								<td><c:out value="${resource.lastName}" /></td>
+								<td><c:out value="${resource.contactNumber}" /></td>
+								<td><c:out value="${resource.email}" /></td>
+								<td><c:out value="${resource.active ? 'Yes' : 'No'}" /></td>
+								<td>
+									<a class="btn btn-xs btn-primary" href="resource?action=edit&sequence=<c:out value="${resource.sequence}"/>"><i class="fa fa-pencil"></i> Edit</a>
+									<a class="btn btn-xs btn-danger" href="resource?action=delete&sequence=<c:out value="${resource.sequence}"/>"><i class="fa fa-trash"></i> Delete</a>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
 
-	<div class="fixed-bottom">
+	<nav class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container-fluid">
-			<div class="pull-right hidden-xs"><b>Version</b> 1.0.0</div>
-			<strong>Copyright &copy; 2017 <a href="http://www.altron.com">Altron</a>.</strong> All rights reserved.
+			<div class="panel-body">
+				<strong>Copyright &copy; 2017 <a href="http://www.altron.com">Altron</a>.</strong> All rights reserved.
+				<div class="pull-right"><b>Version</b> 1.0.0</div>
+			</div>
 		</div>
-	</div>
+	</nav>
 
 	<!--
 		Delete Confirmation Modal form 

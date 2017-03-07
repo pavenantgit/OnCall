@@ -1,24 +1,12 @@
+html {
+}
+
 body {
 	/* font-size: 13px; */
-	padding-top: 70px;
+	padding-bottom: 60px;
+	padding-top: 60px;
 }
 
-.btn-sm {
-	font-size: 11px;	
-}
-
-.form-control {
-	/* font-size: 13px; */
-	/* padding: 6px; */
-}
-
-h5.card-title {
-	margin-bottom: 1px;
-}
-
-.navbar-brand {
-	/* font-size: 13px; */
-}
 /*    
 
 p { 
